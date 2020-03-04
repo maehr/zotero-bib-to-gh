@@ -6,6 +6,9 @@ GitHub action to automatically retrieve your Zotero collection in BibLaTeX forma
 [![GitHub forks](https://img.shields.io/github/forks/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/network)
 [![GitHub stars](https://img.shields.io/github/stars/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/stargazers)
 [![GitHub license](https://img.shields.io/github/license/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/blob/master/LICENSE.md)
+[![Updates](https://pyup.io/repos/github/maehr/zotero-bib-to-gh/shield.svg)](https://pyup.io/repos/github/maehr/zotero-bib-to-gh/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/50666ec594690e44d25f/maintainability)](https://codeclimate.com/github/maehr/zotero-bib-to-gh/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/50666ec594690e44d25f/test_coverage)](https://codeclimate.com/github/maehr/zotero-bib-to-gh/test_coverage)
 
 ## Installation
 
@@ -23,7 +26,7 @@ Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your 
 
 ## Usage
 
-Copy the link to <https://raw.githubusercontent.com/maehr/zotero-bib-to-gh/bib/bibliography/zotero.bib> (i.e. <https://raw.githubusercontent.com/YOURNAME/zotero-bib-to-gh/bib/bibliography/zotero.bib>). An updated version of `zotero.bib` lives on the [bib-branch](https://github.com/maehr/zotero-bib-to-gh/branches) of your repository. You can use it in YAML front matter of <https://github.com/maehr/academic-pandoc-template> or anywhere else.
+Copy the link to <https://raw.githubusercontent.com/maehr/zotero-bib-to-gh/master/bibliography/zotero.bib> (i.e. <https://raw.githubusercontent.com/YOURNAME/zotero-bib-to-gh/master/bibliography/zotero.bib>). You can use it in YAML front matter of <https://github.com/maehr/academic-pandoc-template> or anywhere else.
 
 Change `.github/workflows/zotero-bib-to-git.yml` to adjust the cronjob to your needs (check out [crontab.guru](https://crontab.guru/) if you are not familiar with cronjobs).
 ```YAML
