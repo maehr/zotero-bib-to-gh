@@ -11,7 +11,7 @@ jobs:
   zotero-bib-to-gh:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Setup Python
       uses: actions/setup-python@v1
       with:
@@ -35,7 +35,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -m "Add changes" -a
+        git diff --quiet && git diff --staged --quiet || git commit -m "Add changes" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
