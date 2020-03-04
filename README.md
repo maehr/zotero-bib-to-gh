@@ -6,6 +6,9 @@ GitHub action to automatically retrieve your Zotero collection in BibLaTeX forma
 [![GitHub forks](https://img.shields.io/github/forks/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/network)
 [![GitHub stars](https://img.shields.io/github/stars/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/stargazers)
 [![GitHub license](https://img.shields.io/github/license/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/blob/master/LICENSE.md)
+[![Updates](https://pyup.io/repos/github/maehr/zotero-bib-to-gh/shield.svg)](https://pyup.io/repos/github/maehr/zotero-bib-to-gh/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/50666ec594690e44d25f/maintainability)](https://codeclimate.com/github/maehr/zotero-bib-to-gh/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/50666ec594690e44d25f/test_coverage)](https://codeclimate.com/github/maehr/zotero-bib-to-gh/test_coverage)
 
 ## Installation
 
