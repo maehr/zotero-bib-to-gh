@@ -1,0 +1,6 @@
+theme: jekyll-theme-minimal
+title: zotero-bib-to-gh
+description: GitHub action to retrieve Zotero collection in BibLaTeX format and save it as GitHub repository
+logo: android-chrome-512x512.png
+show_downloads: true
+# google_analytics: [Your Google Analytics tracking ID]

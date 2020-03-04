@@ -24,4 +24,4 @@ reported vulnerability, what to expect if the vulnerability is accepted or
 declined, etc.
 -->
 
-Please use the [GitHub Issue Tracker](https://github.com/USERNAME/REPO_NAME/issues) to report vulnerabilities.
+Please use the [GitHub Issue Tracker](https://github.com/maehr/zotero-bib-to-gh/issues) to report vulnerabilities.

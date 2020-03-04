@@ -1,56 +1,46 @@
-# GitHub template for small projects
+# Zotero BibLaTeX to GitHub
 
-This GitHub template is agnostic to the programming language used, uses GitHub Actions to manage issues and pull requests, and helps enforce best practices for small projects.  To use the template, [generate](https://github.com/maehr/github-template/generate) a new project and perform the following tasks.
+GitHub action to automatically retrieve your Zotero collection in BibLaTeX format at 8:00, 12:00 and 18:00 and save it as GitHub repository.
 
-* [ ] add `FULLNAME`, `USERNAME` and `REPO_NAME` to [README.md](README.md) and change it according to [www.makeareadme.com](https://www.makeareadme.com/)
-* [ ] add `YEAR` and `FULLNAME` to [LICENSE.md](LICENSE.md)
-* [ ] add `EMAILADDRESS` to [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-* [ ] use [www.gitignore.io](https://www.gitignore.io/) to enhance [.gitignore](.gitignore)
-* [ ] use [gitattributes.io](https://gitattributes.io/) to enhance [.gitattributes](.gitattributes)
-* [ ] add secrets variables to [secrets.example.env](secrets.example.env)
-* [ ] add [GitHub actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) in `.github/workflows/` according to [starter-workflows](https://github.com/actions/starter-workflows)
-* [ ] add documentation to [docs](docs/index.md) and activate [gh-pages](https://help.github.com/en/articles/configuring-a-publishing-source-for-github-pages)
-* [ ] [protect](https://help.github.com/en/articles/configuring-protected-branches) the master branch to enforce a [fork and pull](https://gist.github.com/Chaser324/ce0505fbed06b947d962) workflow
-* [ ] activate [GitHub security alerts](https://github.blog/2017-11-16-introducing-security-alerts-on-github/) and change [SECURITY.md](SECURITY.md) accordingly
-* [ ] add favicons to `docs/`, for example via [favicon.io](https://favicon.io/)
----
-
-# REPO_NAME
-
-Foobar is a Python library for dealing with word pluralization.
-
-[![GitHub issues](https://img.shields.io/github/issues/USERNAME/REPO_NAME.svg)](https://github.com/USERNAME/REPO_NAME/issues)
-[![GitHub forks](https://img.shields.io/github/forks/USERNAME/REPO_NAME.svg)](https://github.com/USERNAME/REPO_NAME/network)
-[![GitHub stars](https://img.shields.io/github/stars/USERNAME/REPO_NAME.svg)](https://github.com/USERNAME/REPO_NAME/stargazers)
-[![GitHub license](https://img.shields.io/github/license/USERNAME/REPO_NAME.svg)](https://github.com/USERNAME/REPO_NAME/blob/master/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/issues)
+[![GitHub forks](https://img.shields.io/github/forks/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/network)
+[![GitHub stars](https://img.shields.io/github/stars/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/stargazers)
+[![GitHub license](https://img.shields.io/github/license/maehr/zotero-bib-to-gh.svg)](https://github.com/maehr/zotero-bib-to-gh/blob/master/LICENSE.md)
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your local installation with it.
 
-```bash
-pip install foobar
-```
+- [Use this template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) or [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repo.
+- Get `userID` for Zotero <https://www.zotero.org/settings/keys>
+<img src="assets/images/zoter_user_id.png" width="982">
+- Add `userID` as value of `ZOTERO_USER_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
+- Create a new `API Key` for Zotero <https://www.zotero.org/settings/keys/new>
+<img src="assets/images/zotero_new_private_key.png" width="641">
+- Copy the new `API Key`
+<img src="assets/images/zotero_key_created.png" width="918">
+- Add `API Key` as value of `ZOTERO_BEARER_TOKEN` to the [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
 
 ## Usage
 
-```python
-import foobar
+Copy the link to <https://raw.githubusercontent.com/maehr/zotero-bib-to-gh/bib/bibliography/zotero.bib> (i.e. <https://raw.githubusercontent.com/YOURNAME/zotero-bib-to-gh/bib/bibliography/zotero.bib>). An updated version of `zotero.bib` lives on the [bib-branch](https://github.com/maehr/zotero-bib-to-gh/branches) of your repository. You can use it in YAML front matter of <https://github.com/maehr/academic-pandoc-template> or anywhere else.
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+Change `.github/workflows/zotero-bib-to-git.yml` to adjust the cronjob to your needs (check out [crontab.guru](https://crontab.guru/) if you are not familiar with cronjobs).
+```YAML
+on:
+  schedule:
+  - cron: "0 8,12,18 * * *"
 ```
 
 ## Support
 
-This project is maintained by [@USERNAME](https://github.com/USERNAME). Please understand that we won't be able to provide individual support via email. We also believe that help is much more valuable if it's shared publicly, so that more people can benefit from it.
+This project is maintained by [@maehr](https://github.com/maehr). Please understand that we won't be able to provide individual support via email. We also believe that help is much more valuable if it's shared publicly, so that more people can benefit from it.
 
 | Type                   | Platforms                                                    |
 | ---------------------- | ------------------------------------------------------------ |
-| 🚨 **Bug Reports**      | [GitHub Issue Tracker](https://github.com/USERNAME/REPO_NAME/issues) |
-| 🎁 **Feature Requests** | [GitHub Issue Tracker](https://github.com/USERNAME/REPO_NAME/issues) |
-| 🛡 **Report a security vulnerability**      | [GitHub Issue Tracker](https://github.com/USERNAME/REPO_NAME/issues) |
+| 🚨 **Bug Reports**      | [GitHub Issue Tracker](https://github.com/maehr/zotero-bib-to-gh/issues) |
+| 🎁 **Feature Requests** | [GitHub Issue Tracker](https://github.com/maehr/zotero-bib-to-gh/issues) |
+| 🛡 **Report a security vulnerability**      | [GitHub Issue Tracker](https://github.com/maehr/zotero-bib-to-gh/issues) |
 
 ## Roadmap
 
@@ -62,13 +52,13 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/USERNAME/REPO_NAME/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/maehr/zotero-bib-to-gh/tags).
 
 ## Authors and acknowledgment
 
-- **FULLNAME** - _Initial work_ - [USERNAME](https://github.com/USERNAME)
+- **Moritz Mähr** - _Initial work_ - [maehr](https://github.com/maehr)
 
-See also the list of [contributors](https://github.com/USERNAME/REPO_NAME/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/maehr/zotero-bib-to-gh/graphs/contributors) who participated in this project.
 
 ## License
 
