@@ -41,7 +41,7 @@ if zotero_connection.status_code != 200:
     exit(error)
 logger.info(error)
 
-latest_version = zotero_connection.headers.get('last-modified-version')
+latest_version = int(zotero_connection.headers.get('last-modified-version'))
 
 if cached_version is latest_version:
     logger.info(f'online version {latest_version} is not different from cache {cached_version}. Done!')
