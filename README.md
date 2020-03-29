@@ -16,12 +16,18 @@ Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your 
 
 - [Use this template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) or [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repo.
 - Get `userID` for Zotero <https://www.zotero.org/settings/keys>
-<img src="assets/images/zoter_user_id.png" width="982">
+
+  <img src="assets/images/zoter_user_id.png" width="80%">
+
 - Add `userID` as value of `ZOTERO_USER_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
 - Create a new `API Key` for Zotero <https://www.zotero.org/settings/keys/new>
-<img src="assets/images/zotero_new_private_key.png" width="641">
+
+  <img src="assets/images/zotero_new_private_key.png" width="80%">
+  
 - Copy the new `API Key`
-<img src="assets/images/zotero_key_created.png" width="918">
+
+  <img src="assets/images/zotero_key_created.png" width="80%">
+  
 - Add `API Key` as value of `ZOTERO_BEARER_TOKEN` to the [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
 
 ## Usage
