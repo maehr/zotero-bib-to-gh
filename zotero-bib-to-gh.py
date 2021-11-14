@@ -44,7 +44,7 @@ def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
 
     with open(f"bibliography/{file_name}", "w") as file:
         file.write(biblatex_file_content)
-        logger.info("{file_name} updated")
+        logger.info(f"{file_name} updated")
 
     with open(f"bibliography/{file_name}-last-modified-version", "w") as file:
         file.write(str(latest_version))
@@ -77,9 +77,7 @@ if zotero_user_id is not None:
     download_and_write_bib(zotero_headers, zotero_user_url)
 
 if zotero_group_id is not None:
-    zotero_group_url = (
-        f"https://api.zotero.org/group/{zotero_group_id}/items?v=3&format=biblatex"
-    )
+    zotero_group_url = f"https://api.zotero.org/users/{zotero_user_id}/groups/{zotero_group_id}/items?v=3&format=biblatex"
     download_and_write_bib(zotero_headers, zotero_group_url, f"{zotero_group_id}.bib")
 
 
