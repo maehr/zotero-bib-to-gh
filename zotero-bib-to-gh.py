@@ -23,11 +23,12 @@ def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
         logger.error(error)
         exit(error)
     logger.info(error)
-
-    with open(f"bibliography/{file_name}-last-modified-version", "r") as file:
-        cached_version = int(file.readline())
-        logger.info(f"last-modified-version is {cached_version}")
-
+    try:
+        with open(f"bibliography/{file_name}-last-modified-version", "r") as file:
+            cached_version = int(file.readline())
+            logger.info(f"last-modified-version is {cached_version}")
+    except:
+        cached_version = 0
     latest_version = int(zotero_connection.headers.get("last-modified-version"))
 
     if cached_version is latest_version:
