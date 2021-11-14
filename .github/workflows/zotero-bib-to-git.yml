@@ -6,7 +6,8 @@ on:
   push:
     branches:
       - test
-
+  workflow_dispatch:
+  
 jobs:
   zotero-bib-to-gh:
     runs-on: ubuntu-latest
