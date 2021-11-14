@@ -34,7 +34,7 @@ Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your 
 
 Copy the link to <https://raw.githubusercontent.com/maehr/zotero-bib-to-gh/master/bibliography/zotero.bib> (i.e. <https://raw.githubusercontent.com/YOURNAME/zotero-bib-to-gh/master/bibliography/zotero.bib>).
 
-Change `.github/workflows/zotero-bib-to-git.yml` to adjust the cronjob to your needs (check out [crontab.guru](https://crontab.guru/) if you are not familiar with cronjobs).
+Change `.github/workflows/zotero-bib-to-git.yml` to adjust the cronjob to your needs or run it [manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) (check out [crontab.guru](https://crontab.guru/) if you are not familiar with cronjobs).
 ```YAML
 on:
   schedule:
