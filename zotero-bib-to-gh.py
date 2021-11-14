@@ -55,13 +55,6 @@ zotero_user_id = environ.get("ZOTERO_USER_ID")
 if zotero_user_id is None:
     error = f"ZOTERO_USER_ID not set in GitHub secrets"
     logger.error(error)
-zotero_group_id = environ.get("ZOTERO_GROUP_ID")
-if zotero_group_id is None:
-    error = f"ZOTERO_GROUP_ID not set in GitHub secrets"
-    logger.error(error)
-if zotero_user_id and zotero_group_id is None:
-    error = f"Neither ZOTERO_USER_ID nor ZOTERO_GROUP_ID set in GitHub secrets"
-    logger.error(error)
     exit(error)
 zotero_bearer_token = environ.get("ZOTERO_BEARER_TOKEN")
 if zotero_bearer_token is None:
@@ -76,9 +69,12 @@ if zotero_user_id is not None:
     )
     download_and_write_bib(zotero_headers, zotero_user_url)
 
-if zotero_group_id is not None:
-    zotero_group_url = f"https://api.zotero.org/users/{zotero_user_id}/groups/{zotero_group_id}/items?v=3&format=biblatex"
-    download_and_write_bib(zotero_headers, zotero_group_url, f"{zotero_group_id}.bib")
+groups = httpx.get(f"https://api.zotero.org/users/{zotero_user_id}/groups/", headers=zotero_headers)
 
+for group in groups.json():
+    for attribute, value in group.items():
+        if attribute == "id":
+            zotero_group_url = (f"https://api.zotero.org/groups/{value}/items?v=3&format=biblatex")
+            download_and_write_bib(zotero_headers, zotero_group_url, f"{value}.bib")
 
 logger.info("Done!")
