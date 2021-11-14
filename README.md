@@ -15,11 +15,17 @@ GitHub action to automatically retrieve your Zotero collection in BibLaTeX forma
 Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your local installation with it.
 
 - [Use this template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) or [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repo.
-- Get `userID` for Zotero <https://www.zotero.org/settings/keys>
+- Get `userID` from Zotero <https://www.zotero.org/settings/keys>
 
   <img src="assets/images/zoter_user_id.png" width="80%">
 
 - Add `userID` as value of `ZOTERO_USER_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
+- Get `groupID` from Zotero <https://www.zotero.org/groups/>
+
+  <img src="assets/images/zoter_group_id.png" width="80%">
+
+- Add `groupID` as value of `ZOTERO_GROUP_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
+
 - Create a new `API Key` for Zotero <https://www.zotero.org/settings/keys/new>
 
   <img src="assets/images/zotero_new_private_key.png" width="80%">
