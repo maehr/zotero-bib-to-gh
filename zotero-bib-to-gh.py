@@ -68,14 +68,18 @@ if zotero_bearer_token is None:
     logger.error(error)
     exit(error)
 
-zotero_user_url = (
-    f"https://api.zotero.org/users/{zotero_user_id}/items?v=3&format=biblatex"
-)
-zotero_group_url = (
-    f"https://api.zotero.org/group/{zotero_group_id}/items?v=3&format=biblatex"
-)
 zotero_headers = {"Authorization": f"Bearer {zotero_bearer_token}"}
+if zotero_user_id is not None:
+    zotero_user_url = (
+        f"https://api.zotero.org/users/{zotero_user_id}/items?v=3&format=biblatex"
+    )
+    download_and_write_bib(zotero_headers, zotero_user_url)
 
-download_and_write_bib(zotero_headers, zotero_user_url)
-download_and_write_bib(zotero_headers, zotero_group_url, f"{zotero_group_id}.bib")
+if zotero_group_id is not None:
+    zotero_group_url = (
+        f"https://api.zotero.org/group/{zotero_group_id}/items?v=3&format=biblatex"
+    )
+    download_and_write_bib(zotero_headers, zotero_group_url, f"{zotero_group_id}.bib")
+
+
 logger.info("Done!")
