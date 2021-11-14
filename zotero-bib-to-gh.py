@@ -19,6 +19,9 @@ def follow_and_extract(url, headers):
 def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
     zotero_connection = httpx.get(url=zotero_url, headers=zotero_headers)
     error = f"{zotero_url} returned {zotero_connection.status_code} after {zotero_connection.elapsed}"
+    if zotero_connection.status_code == 403:
+            logger.error("Access to library not granted.")
+            return
     if zotero_connection.status_code != 200:
         logger.error(error)
         exit(error)
@@ -35,7 +38,7 @@ def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
         logger.info(
             f"online version {latest_version} is not different from cache {cached_version}. Done!"
         )
-        exit()
+        return
 
     logger.info(
         f"online version {latest_version} is different from cache {cached_version}. Fetching data..."
@@ -69,12 +72,18 @@ if zotero_user_id is not None:
     )
     download_and_write_bib(zotero_headers, zotero_user_url)
 
-groups = httpx.get(f"https://api.zotero.org/users/{zotero_user_id}/groups/", headers=zotero_headers)
+logger.info("Downloading all groups!")
+
+groups = httpx.get(
+    f"https://api.zotero.org/users/{zotero_user_id}/groups/", headers=zotero_headers
+)
 
 for group in groups.json():
     for attribute, value in group.items():
         if attribute == "id":
-            zotero_group_url = (f"https://api.zotero.org/groups/{value}/items?v=3&format=biblatex")
+            zotero_group_url = (
+                f"https://api.zotero.org/groups/{value}/items?v=3&format=biblatex"
+            )
             download_and_write_bib(zotero_headers, zotero_group_url, f"{value}.bib")
 
 logger.info("Done!")

@@ -20,13 +20,7 @@ Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your 
   <img src="assets/images/zoter_user_id.png" width="80%">
 
 - Add `userID` as value of `ZOTERO_USER_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
-- Get `groupID` from Zotero <https://www.zotero.org/groups/>
-
-  <img src="assets/images/zoter_group_id.png" width="80%">
-
-- Add `groupID` as value of `ZOTERO_GROUP_ID` to [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
-
-- Create a new `API Key` for Zotero <https://www.zotero.org/settings/keys/new>
+- Create a new `API Key` for Zotero <https://www.zotero.org/settings/keys/new>. If you grant access to group libraries, they are also retrieved.
 
   <img src="assets/images/zotero_new_private_key.png" width="80%">
   
