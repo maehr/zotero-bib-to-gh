@@ -56,12 +56,12 @@ def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
 
 zotero_user_id = environ.get("ZOTERO_USER_ID")
 if zotero_user_id is None:
-    error = f"ZOTERO_USER_ID not set in GitHub secrets"
+    error = 'ZOTERO_USER_ID not set in GitHub secrets'
     logger.error(error)
     exit(error)
 zotero_bearer_token = environ.get("ZOTERO_BEARER_TOKEN")
 if zotero_bearer_token is None:
-    error = f"ZOTERO_BEARER_TOKEN not set in GitHub secrets"
+    error = 'ZOTERO_BEARER_TOKEN not set in GitHub secrets'
     logger.error(error)
     exit(error)
 
