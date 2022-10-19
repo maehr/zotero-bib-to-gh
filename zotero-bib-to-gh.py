@@ -3,9 +3,8 @@ from os import environ
 import httpx
 from logzero import logger
 
-
-def follow_and_extract(url, headers):
-    request = httpx.get(url=url, headers=headers)
+def follow_and_extract(client, url, headers):
+    request = client.get(url=url, headers=headers)
     logger.info(f"{url} returned {request.status_code} after {request.elapsed}")
     # If there is s link to next url recursive call
     try:
@@ -16,8 +15,8 @@ def follow_and_extract(url, headers):
         return request.text
 
 
-def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
-    zotero_connection = httpx.get(url=zotero_url, headers=zotero_headers)
+def download_and_write_bib(client, zotero_headers, zotero_url, file_name="zotero.bib"):
+    zotero_connection = client.get(url=zotero_url, headers=zotero_headers)
     error = f"{zotero_url} returned {zotero_connection.status_code} after {zotero_connection.elapsed}"
     if zotero_connection.status_code == 403:
             logger.error("Access to library not granted.")
@@ -53,12 +52,15 @@ def download_and_write_bib(zotero_headers, zotero_url, file_name="zotero.bib"):
         file.write(str(latest_version))
         logger.info(f"last-modified-version updated to {latest_version}")
 
+timeout = httpx.Timeout(10.0, connect=60.0)
+client = httpx.Client(timeout=timeout)
 
 zotero_user_id = environ.get("ZOTERO_USER_ID")
 if zotero_user_id is None:
     error = 'ZOTERO_USER_ID not set in GitHub secrets'
     logger.error(error)
     exit(error)
+
 zotero_bearer_token = environ.get("ZOTERO_BEARER_TOKEN")
 if zotero_bearer_token is None:
     error = 'ZOTERO_BEARER_TOKEN not set in GitHub secrets'
@@ -70,11 +72,11 @@ if zotero_user_id is not None:
     zotero_user_url = (
         f"https://api.zotero.org/users/{zotero_user_id}/items?v=3&format=biblatex"
     )
-    download_and_write_bib(zotero_headers, zotero_user_url)
+    download_and_write_bib(client, zotero_headers, zotero_user_url)
 
 logger.info("Downloading all groups!")
 
-groups = httpx.get(
+groups = client.get(
     f"https://api.zotero.org/users/{zotero_user_id}/groups/", headers=zotero_headers
 )
 
@@ -84,6 +86,6 @@ for group in groups.json():
             zotero_group_url = (
                 f"https://api.zotero.org/groups/{value}/items?v=3&format=biblatex"
             )
-            download_and_write_bib(zotero_headers, zotero_group_url, f"{value}.bib")
+            download_and_write_bib(client, zotero_headers, zotero_group_url, f"{value}.bib")
 
 logger.info("Done!")
