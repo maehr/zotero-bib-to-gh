@@ -9,7 +9,7 @@ def follow_and_extract(client, url, headers):
     # If there is s link to next url recursive call
     try:
         next_url = request.links["next"].get("url")
-        return request.text + follow_and_extract(next_url, headers)
+        return request.text + follow_and_extract(client, next_url, headers)
     # If there is no more link to next url recursion terminates
     except KeyError:
         return request.text
@@ -42,7 +42,7 @@ def download_and_write_bib(client, zotero_headers, zotero_url, file_name="zotero
     logger.info(
         f"online version {latest_version} is different from cache {cached_version}. Fetching data..."
     )
-    biblatex_file_content = follow_and_extract(url=zotero_url, headers=zotero_headers)
+    biblatex_file_content = follow_and_extract(client, url=zotero_url, headers=zotero_headers)
 
     with open(f"bibliography/{file_name}", "w") as file:
         file.write(biblatex_file_content)
