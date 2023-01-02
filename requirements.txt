@@ -1,2 +1,2 @@
-httpx==0.23.1
+httpx==0.23.2
 logzero==1.7.0
