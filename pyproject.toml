@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "zotero-bib-to-gh-maehr"
+version = "0.1.0"
+description = "GitHub action to automatically retrieve your Zotero collection in BibLaTeX format at 8:00, 12:00 and 18:00 and save it as GitHub repository."
+authors = ["Moritz Mähr <moritz.maehr@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+httpx = "^0.25.1"
+logzero = "^1.7.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

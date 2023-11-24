@@ -30,6 +30,14 @@ Make sure you have a [Zotero.org](https://www.zotero.org) account and sync your 
   
 - Add `API Key` as value of `ZOTERO_BEARER_TOKEN` to the [GitHub secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) of your repo
 
+### Setting Permissions for Manual Workflow Runs
+
+To manually run the workflow, ensure that your GitHub repository has the appropriate permissions set. You need to assign workflow permissions that allow the execution of workflows manually. This is crucial for triggering the workflow as per your requirements.
+
+<img src="assets/images/github_workflow_permissions.png" alt="In Settings/Actions/General `https://github.com/maehr/zotero-bib-to-gh/settings/actions` assign `read and write permissions`." width="80%">
+
+For detailed steps on setting these permissions, refer to the GitHub documentation on [manually running a workflow](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow). Make sure to review and adjust the permissions under your repository's settings to align with your workflow needs.
+
 ## Usage
 
 Copy the link to <https://raw.githubusercontent.com/maehr/zotero-bib-to-gh/master/bibliography/zotero.bib> (i.e. <https://raw.githubusercontent.com/YOURNAME/zotero-bib-to-gh/master/bibliography/zotero.bib>).
