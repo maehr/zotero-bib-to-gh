@@ -40,7 +40,7 @@ jobs:
     - name: Install Dependencies
       run: poetry install
     - name: Run
-      run: python zotero-bib-to-gh.py
+      run: poetry run python zotero-bib-to-gh.py
       env:
         ZOTERO_USER_ID: ${{ secrets.ZOTERO_USER_ID }}
         ZOTERO_BEARER_TOKEN: ${{ secrets.ZOTERO_BEARER_TOKEN }}
